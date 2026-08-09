@@ -262,12 +262,16 @@ function openHit(hit) {
   holder.appendChild(pop);
 }
 
-$('render-btn').addEventListener('click', renderLyrics);
-
-$('clear-btn').addEventListener('click', () => {
+function clearWorkspace() {
   el.lyricsIn.value = '';
   el.lyricsOut.innerHTML = '';
   el.lineCount.textContent = '';
+}
+
+$('render-btn').addEventListener('click', renderLyrics);
+
+$('clear-btn').addEventListener('click', () => {
+  clearWorkspace();
   el.lyricsIn.focus();
 });
 
@@ -309,11 +313,9 @@ $('teacher-toggle').addEventListener('click', () => {
 });
 
 $('reset-btn').addEventListener('click', () => {
-  el.lyricsIn.value = '';
+  clearWorkspace();
   $('all-zh').checked = false;
   selectSong(SONGS[0]);
-  el.lyricsOut.innerHTML = '';
-  el.lineCount.textContent = '';
   $('teacher').hidden = true;
   $('teacher-toggle').setAttribute('aria-expanded', 'false');
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -328,12 +330,27 @@ document.addEventListener('keydown', (e) => {
 
 /* ---------- start ---------- */
 
+// A browser will restore form state on reload and on back/forward, which would
+// bring the pasted words back after the page has promised they are gone. Clear
+// the workspace on every entry path: now (Blink restores before this runs),
+// again on load (Gecko restores after it), and on pageshow (bfcache).
+clearWorkspace();
+window.addEventListener('load', clearWorkspace);
+window.addEventListener('pageshow', () => {
+  clearWorkspace();
+  $('all-zh').checked = false;
+});
+
+let big = false;
 try {
-  if (localStorage.getItem('lp-big') === '1') {
-    $('big-text').checked = true;
-    document.body.classList.add('big');
-  }
-} catch (_) { /* ignore */ }
+  big = localStorage.getItem('lp-big') === '1';
+} catch (_) { /* private window — the setting just won't stick */ }
+
+// Assigned in both directions: a restored checkbox must not disagree with the
+// class on <body>. Only this setting persists; the Chinese switch never does.
+$('big-text').checked = big;
+document.body.classList.toggle('big', big);
+$('all-zh').checked = false;
 
 renderTabs();
 renderSong(current);

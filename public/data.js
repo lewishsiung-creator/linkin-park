@@ -112,7 +112,7 @@ const SONGS = [
       {
         word: 'suffocate',
         pos: 'v.',
-        gloss: 'to be unable to breathe; to feel trapped',
+        gloss: 'to be unable to breathe; to make someone feel trapped and unable to breathe',
         zh: '窒息、令人喘不過氣',
         example: 'I love my family, but sometimes the attention suffocates me.',
       },
@@ -132,13 +132,14 @@ const SONGS = [
       },
     ],
     focus: {
-      title: 'tired of + -ing, and become + adjective',
+      title: 'tired of + -ing, and become / get / go + adjective',
       body:
-        'After <em>tired of</em>, <em>sick of</em> and <em>afraid of</em>, a verb takes <strong>-ing</strong>, never <em>to</em>. And <em>become / get / go</em> + adjective describes a change of state — the difference between <em>I am numb</em> (a fact) and <em>I became numb</em> (a process).',
+        'After <em>tired of</em>, <em>sick of</em> and <em>afraid of</em>, a verb takes <strong>-ing</strong>, never <em>to</em>. And <em>become / get</em> + adjective describes a change of state — the difference between <em>I am numb</em> (a fact) and <em>I became numb</em> (a process). <em>Go</em> + adjective does the same job but only with a fixed set of mostly unwanted or natural changes — <em>go numb, go quiet, go blind, go grey</em> — never <s>go tired</s> or <s>go frustrated</s>.',
       examples: [
         'I\'m tired of <strong>explaining</strong> the same thing. (not: <s>tired to explain</s>)',
         'She got <strong>frustrated</strong> and left.',
         'Over ten years he became <strong>very careful</strong> about what he promised.',
+        'Twenty minutes in the cold and his hands <strong>went numb</strong>. (not: <s>went tired</s>)',
       ],
     },
     questions: [
@@ -178,7 +179,7 @@ const SONGS = [
         pos: 'v.',
         gloss: 'to become well again, in body or in feeling',
         zh: '痊癒、療癒',
-        example: 'Some conversations take years to heal.',
+        example: 'It took her years to heal after that argument.',
       },
       {
         word: 'lost',
@@ -347,10 +348,10 @@ const SONGS = [
     focus: {
       title: '"Who cares?" — the same words, two opposite meanings',
       body:
-        'As a rhetorical question, <strong>Who cares?</strong> means <em>nobody does, and it isn\'t important</em>. As a real question — <strong>Who cares if…?</strong> — it asks who is actually affected. Intonation does the work: falling and flat is dismissive, rising and slow is genuine.',
+        'The same words carry both meanings. Dismissive, it means <em>nobody does, and it isn\'t important</em>. Genuine, it asks who is actually affected. The <strong>if</strong>-clause is not the cue — <em>Who cares if it rains?</em> is usually dismissive too. Stance and context decide, and intonation helps: falling and flat is dismissive, rising and slow is genuine.',
       examples: [
         '<strong>Who cares?</strong> It\'s only a draft. (dismissive)',
-        '<strong>Who cares if</strong> one light goes out? (genuine — the answer is: someone does)',
+        '<strong>Who cares if</strong> one client leaves quietly? (genuine — the answer is: the whole team should)',
         'Compare: <strong>So what?</strong> vs. <strong>Then what?</strong>',
       ],
     },

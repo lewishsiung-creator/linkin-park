@@ -55,8 +55,10 @@
       target words. Nothing is uploaded and nothing is saved; closing the tab
       clears it.<span class="zh-inline" lang="zh-Hant"> 貼上歌詞，一行一句。</span>
     </p>
+    <!-- autocomplete=off keeps the browser from writing the pasted words into
+         session form state on disk and restoring them after a reload. -->
     <textarea id="lyrics-input" class="lyrics-input" rows="5"
-      aria-label="Lyrics" aria-describedby="lyrics-hint"
+      aria-label="Lyrics" aria-describedby="lyrics-hint" autocomplete="off"
       placeholder="Paste the lyrics here…"></textarea>
     <div class="row">
       <button class="btn" id="render-btn" type="button">Lay it out</button>
@@ -83,11 +85,11 @@
 <aside class="teacher" id="teacher" hidden>
   <h4>Teacher</h4>
   <label class="switch">
-    <input type="checkbox" id="all-zh">
+    <input type="checkbox" id="all-zh" autocomplete="off">
     <span>Show all Chinese <span class="tiny" lang="zh-Hant">全部顯示中文</span></span>
   </label>
   <label class="switch">
-    <input type="checkbox" id="big-text">
+    <input type="checkbox" id="big-text" autocomplete="off">
     <span>Larger text <span class="tiny" lang="zh-Hant">放大字級</span></span>
   </label>
   <button class="btn ghost small" id="reset-btn" type="button">Reset for next student</button>
