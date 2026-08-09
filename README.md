@@ -67,11 +67,15 @@ Then open <http://localhost:8080>. There is no build step — four static files.
 The site lives in `public/`, which both hosts build from. A push to `main`
 deploys to both:
 
-- **GitHub Pages** — via `.github/workflows/pages.yml`, roughly two minutes.
-- **Cloudflare Pages** — connected to the same repo, build output directory
-  `public`, no build command. Deploys in seconds; this is the URL to hand to
-  students.
+- **Cloudflare Pages** — <https://linkin-park-9h4.pages.dev>. Git-connected to
+  this repo, build output directory `public`, no build command. Deploys in
+  seconds; this is the URL to hand to students.
+- **GitHub Pages** — <https://lewishsiung-creator.github.io/linkin-park/>, via
+  `.github/workflows/pages.yml`. Roughly two minutes.
 
-Same arrangement as *English Exercises*. Note that a git-connected Cloudflare
-Pages project can only be created in the Cloudflare dashboard — creating one
-from the CLI would lock that project name to direct-upload forever.
+Same arrangement as *English Exercises*. The Pages project was created
+git-connected through the Cloudflare API rather than the dashboard, which works
+as long as the account's GitHub App installation already covers the repo. Do
+not create it with `wrangler pages project create` — that makes a direct-upload
+project, and a project cannot change its source type afterwards, so the name
+would be spent.
