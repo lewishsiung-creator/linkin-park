@@ -41,14 +41,29 @@ Follows the same house rules as the adult material in *English Exercises*:
 ## Running it
 
 ```bash
-python3 -m http.server 8080 --directory linkin-park
+python3 -m http.server 8080 --directory linkin-park/public
 ```
 
 Then open <http://localhost:8080>. There is no build step — four static files.
 
 ## Files
 
-- `index.html` — page structure
-- `style.css` — dark theme
-- `data.js` — the six songs: notes, vocabulary, language focus, questions
-- `app.js` — tabs, Chinese reveals, the lyrics workspace, teacher panel
+- `public/index.html` — page structure
+- `public/style.css` — dark theme
+- `public/data.js` — the six songs: notes, vocabulary, language focus, questions
+- `public/app.js` — tabs, Chinese reveals, the lyrics workspace, teacher panel
+- `.github/workflows/pages.yml` — publishes `public/` to GitHub Pages on push
+
+## Deployment
+
+The site lives in `public/`, which both hosts build from. A push to `main`
+deploys to both:
+
+- **GitHub Pages** — via `.github/workflows/pages.yml`, roughly two minutes.
+- **Cloudflare Pages** — connected to the same repo, build output directory
+  `public`, no build command. Deploys in seconds; this is the URL to hand to
+  students.
+
+Same arrangement as *English Exercises*. Note that a git-connected Cloudflare
+Pages project can only be created in the Cloudflare dashboard — creating one
+from the CLI would lock that project name to direct-upload forever.
