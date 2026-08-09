@@ -5,7 +5,9 @@
   --line: #282c35;
   --ink: #e9eaee;
   --ink-dim: #9aa0ac;
-  --ink-faint: #6e7480;
+  /* Clears WCAG AA (4.5:1) on all three backgrounds at 12–14px, which the
+     older #6e7480 did not — it read as grey mud on a classroom projector. */
+  --ink-faint: #8a90a0;
   --accent: #e2732b;
   --accent-soft: rgba(226, 115, 43, 0.14);
   --zh: #7fb7c9;

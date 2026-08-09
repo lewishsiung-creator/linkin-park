@@ -32,11 +32,22 @@ function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// Irregular past forms for the heads that actually occur in this data set —
+// not a general English table. Add to it when the vocabulary gains a new
+// irregular verb, or "fallen apart" and "went out" go unhighlighted.
+const IRREGULAR = {
+  fall: ['fell', 'fallen'],
+  go: ['went', 'gone'],
+  take: ['took', 'taken'],
+  hold: ['held'],
+};
+
 // Rough inflections, enough to catch a target word as it actually appears in a
 // verse: matter/matters/mattered, slip/slipping, heal/healing, care/cared.
 function formsOf(word) {
   const w = word.toLowerCase();
   const out = new Set([w]);
+  (IRREGULAR[w] || []).forEach((f) => out.add(f));
   if (/[^aeiou]y$/.test(w)) {
     out.add(w.slice(0, -1) + 'ies');
     out.add(w.slice(0, -1) + 'ied');
@@ -78,16 +89,35 @@ function buildMatcher(vocab) {
 function renderTabs() {
   el.tabs.innerHTML = '';
   SONGS.forEach((song) => {
+    const selected = song.id === current.id;
     const b = document.createElement('button');
     b.className = 'tab';
     b.type = 'button';
-    b.role = 'tab';
-    b.setAttribute('aria-selected', String(song.id === current.id));
+    b.id = `tab-${song.id}`;
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-controls', 'main');
+    b.setAttribute('aria-selected', String(selected));
+    // Roving tabindex: one stop for the whole strip, arrows move within it.
+    b.tabIndex = selected ? 0 : -1;
     b.innerHTML = `${escapeHtml(song.title)}<span class="yr">${song.year}</span>`;
     b.addEventListener('click', () => selectSong(song));
     el.tabs.appendChild(b);
   });
 }
+
+el.tabs.addEventListener('keydown', (e) => {
+  const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+  if (!keys.includes(e.key)) return;
+  e.preventDefault();
+  const i = SONGS.findIndex((s) => s.id === current.id);
+  const next =
+    e.key === 'Home' ? 0
+    : e.key === 'End' ? SONGS.length - 1
+    : e.key === 'ArrowRight' ? (i + 1) % SONGS.length
+    : (i - 1 + SONGS.length) % SONGS.length;
+  selectSong(SONGS[next]);
+  document.getElementById(`tab-${SONGS[next].id}`).focus();
+});
 
 function renderSong(song) {
   el.title.textContent = song.title;
@@ -105,12 +135,12 @@ function renderSong(song) {
       <div class="v-top">
         <span class="v-word">${escapeHtml(v.word)}</span>
         <span class="v-pos">${escapeHtml(v.pos)}</span>
-        <button class="zh-chip" type="button" aria-expanded="false"
+        <button class="zh-chip" type="button" aria-expanded="false" lang="zh-Hant"
                 aria-label="Chinese for ${escapeHtml(v.word)}">中</button>
       </div>
       <p class="v-gloss">${escapeHtml(v.gloss)}</p>
       <p class="v-ex">${highlightWord(v.example, v.word)}</p>
-      <p class="v-zh" hidden>${escapeHtml(v.zh)}</p>`;
+      <p class="v-zh" lang="zh-Hant" hidden>${escapeHtml(v.zh)}</p>`;
     const btn = li.querySelector('.zh-chip');
     const zh = li.querySelector('.v-zh');
     btn.addEventListener('click', () => toggleZh(btn, zh));
@@ -147,8 +177,12 @@ function toggleZh(btn, node) {
 
 function selectSong(song) {
   current = song;
-  [...el.tabs.children].forEach((b, i) =>
-    b.setAttribute('aria-selected', String(SONGS[i].id === song.id)));
+  [...el.tabs.children].forEach((b, i) => {
+    const selected = SONGS[i].id === song.id;
+    b.setAttribute('aria-selected', String(selected));
+    b.tabIndex = selected ? 0 : -1;
+  });
+  $('main').setAttribute('aria-labelledby', `tab-${song.id}`);
   renderSong(song);
   el.aboutZh.hidden = true;
   el.aboutZhBtn.setAttribute('aria-expanded', 'false');
@@ -224,7 +258,7 @@ function openHit(hit) {
   pop.dataset.v = hit.dataset.v;
   pop.innerHTML =
     `<b>${escapeHtml(v.word)}</b> <i>${escapeHtml(v.pos)}</i> — ${escapeHtml(v.gloss)}` +
-    `<br><span class="zh">${escapeHtml(v.zh)}</span>`;
+    `<br><span class="zh" lang="zh-Hant">${escapeHtml(v.zh)}</span>`;
   holder.appendChild(pop);
 }
 
@@ -303,3 +337,4 @@ try {
 
 renderTabs();
 renderSong(current);
+$('main').setAttribute('aria-labelledby', `tab-${current.id}`);

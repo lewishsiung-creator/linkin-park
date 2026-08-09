@@ -1,4 +1,5 @@
-// Six Linkin Park songs, one per era, used as English material.
+// Six Linkin Park songs from four periods of the band's career, used as
+// English material.
 //
 // No lyrics are stored here, by design. The teaching layer below is written
 // from scratch; the words themselves are pasted into the page at lesson time
@@ -225,9 +226,9 @@ const SONGS = [
     year: 2010,
     era: 'The experimental years',
     about:
-      'The strange, empty space after something has finished but before the next thing has started. Musically this is the band furthest from where they began — electronic, half-sung, half-rapped — and it split their audience straight down the middle.',
+      'The strange, empty space after something has finished but before the next thing has started. Musically it is a long way from where the band began — electronic, half-sung, half-rapped — and it split their audience straight down the middle.',
     aboutZh:
-      '一件事已經結束、下一件事還沒開始的那段空白，既奇怪又空。音樂上這是他們離出發點最遠的一次——電子、半唱半饒舌——也把歌迷分成了兩半。',
+      '一件事已經結束、下一件事還沒開始的那段空白，既奇怪又空。音樂上離樂團的出發點已經很遠——電子、半唱半饒舌——也把歌迷分成了兩半。',
     vocab: [
       {
         word: 'hold on',

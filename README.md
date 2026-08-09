@@ -1,7 +1,7 @@
 # Linkin Park — English through six songs
 
-A personal side project, separate from *English Exercises*. Six songs, one per
-era, used as material for adult English lessons:
+A personal side project, separate from *English Exercises*. Six songs spanning
+four periods of the band's career, used as material for adult English lessons:
 
 | Song | Album | Year |
 | --- | --- | --- |

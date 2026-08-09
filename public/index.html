@@ -11,19 +11,19 @@
 
 <header class="masthead">
   <div class="wrap">
-    <p class="kicker">1996 — 2024 · six songs, six eras</p>
+    <p class="kicker">1996 — present · six songs from across the band’s run</p>
     <h1>Linkin Park</h1>
-    <p class="sub">English material built on the band’s own language.<span class="zh-inline"> 用這個樂團的語言來上英文。</span></p>
+    <p class="sub">English material built on the band’s own language.<span class="zh-inline" lang="zh-Hant"> 用這個樂團的語言來上英文。</span></p>
   </div>
 </header>
 
 <nav class="songbar" aria-label="Songs">
   <div class="wrap">
-    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Songs"></div>
   </div>
 </nav>
 
-<main class="wrap" id="main">
+<main class="wrap" id="main" role="tabpanel" tabindex="-1">
 
   <section class="panel" id="about-panel">
     <div class="song-head">
@@ -31,41 +31,43 @@
       <p class="meta" id="song-meta"></p>
     </div>
     <p class="about" id="song-about"></p>
-    <button class="zh-chip" id="about-zh-btn" type="button" aria-expanded="false">中</button>
-    <p class="zh-text" id="song-about-zh" hidden></p>
+    <button class="zh-chip" id="about-zh-btn" type="button" aria-expanded="false"
+            aria-label="Chinese translation of this description" lang="zh-Hant">中</button>
+    <p class="zh-text" id="song-about-zh" lang="zh-Hant" hidden></p>
   </section>
 
   <section class="panel">
-    <h3 class="panel-h">Vocabulary <span class="panel-h-zh">單字</span></h3>
+    <h3 class="panel-h">Vocabulary <span class="panel-h-zh" lang="zh-Hant">單字</span></h3>
     <p class="hint">Tap 中 for the Chinese. Try the English gloss first.</p>
     <ul class="vocab" id="vocab-list"></ul>
   </section>
 
   <section class="panel">
-    <h3 class="panel-h">Language focus <span class="panel-h-zh">句型重點</span></h3>
+    <h3 class="panel-h">Language focus <span class="panel-h-zh" lang="zh-Hant">句型重點</span></h3>
     <div class="focus" id="focus-box"></div>
   </section>
 
   <section class="panel">
-    <h3 class="panel-h">Lyrics workspace <span class="panel-h-zh">歌詞工作區</span></h3>
-    <p class="hint">
+    <h3 class="panel-h">Lyrics workspace <span class="panel-h-zh" lang="zh-Hant">歌詞工作區</span></h3>
+    <p class="hint" id="lyrics-hint">
       No lyrics ship with this page — copyright. Paste them in from wherever you
       have them and the page will number the lines and highlight this song’s
       target words. Nothing is uploaded and nothing is saved; closing the tab
-      clears it.
+      clears it.<span class="zh-inline" lang="zh-Hant"> 貼上歌詞，一行一句。</span>
     </p>
     <textarea id="lyrics-input" class="lyrics-input" rows="5"
-      placeholder="Paste the lyrics here…&#10;貼上歌詞，一行一句。"></textarea>
+      aria-label="Lyrics" aria-describedby="lyrics-hint"
+      placeholder="Paste the lyrics here…"></textarea>
     <div class="row">
       <button class="btn" id="render-btn" type="button">Lay it out</button>
       <button class="btn ghost" id="clear-btn" type="button">Clear</button>
-      <span class="count" id="line-count"></span>
+      <span class="count" id="line-count" aria-live="polite"></span>
     </div>
-    <div class="lyrics-out" id="lyrics-out" aria-live="polite"></div>
+    <div class="lyrics-out" id="lyrics-out"></div>
   </section>
 
   <section class="panel">
-    <h3 class="panel-h">Talk about it <span class="panel-h-zh">討論</span></h3>
+    <h3 class="panel-h">Talk about it <span class="panel-h-zh" lang="zh-Hant">討論</span></h3>
     <ol class="questions" id="questions"></ol>
   </section>
 
@@ -75,17 +77,18 @@
   <p>A personal side project. Song facts and teaching notes written for classroom use; no lyrics stored.</p>
 </footer>
 
-<button class="teacher-toggle" id="teacher-toggle" type="button" aria-expanded="false" title="Teacher panel">⌘</button>
+<button class="teacher-toggle" id="teacher-toggle" type="button" aria-expanded="false"
+        aria-controls="teacher" aria-label="Teacher panel" title="Teacher panel">⌘</button>
 
 <aside class="teacher" id="teacher" hidden>
   <h4>Teacher</h4>
   <label class="switch">
     <input type="checkbox" id="all-zh">
-    <span>Show all Chinese <span class="tiny">全部顯示中文</span></span>
+    <span>Show all Chinese <span class="tiny" lang="zh-Hant">全部顯示中文</span></span>
   </label>
   <label class="switch">
     <input type="checkbox" id="big-text">
-    <span>Larger text <span class="tiny">放大字級</span></span>
+    <span>Larger text <span class="tiny" lang="zh-Hant">放大字級</span></span>
   </label>
   <button class="btn ghost small" id="reset-btn" type="button">Reset for next student</button>
   <p class="tiny note">Nothing is scored or saved. A reload is a clean lesson.</p>
