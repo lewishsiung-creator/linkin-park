@@ -12,6 +12,8 @@ const SONGS = [
     album: 'Hybrid Theory',
     year: 2000,
     era: 'The nu-metal years',
+    youtube: 'eVTXPUF4Oz4',
+    youtubeKind: 'video',
     about:
       'A song about effort that leads nowhere — the frustration of giving everything to a relationship, a job or a goal and watching it fall apart anyway. The rapped verse and sung chorus became the template for the band\'s early sound, and this is still the song most people meet them through.',
     aboutZh:
@@ -83,6 +85,8 @@ const SONGS = [
     album: 'Meteora',
     year: 2003,
     era: 'The nu-metal years',
+    youtube: 'kXYiU_JCYtU',
+    youtubeKind: 'video',
     about:
       'Someone worn down by another person\'s expectations — a parent, a boss, a teacher — until they stop feeling anything at all. The song is written from the point of view of the person being pressured, which is why it lands so hard with teenagers and, quietly, with adults too.',
     aboutZh:
@@ -155,6 +159,8 @@ const SONGS = [
     album: 'Meteora',
     year: 2003,
     era: 'The nu-metal years',
+    youtube: 'zsCD5XCu6CM',
+    youtubeKind: 'video',
     about:
       'The search for a place, a person, or a version of yourself that feels like home. Less angry than the songs around it and more honest — the singer admits he does not yet know what he is looking for, only that he has not found it.',
     aboutZh:
@@ -226,6 +232,8 @@ const SONGS = [
     album: 'A Thousand Suns',
     year: 2010,
     era: 'The experimental years',
+    youtube: '5qF_qbaWt3Q',
+    youtubeKind: 'video',
     about:
       'The strange, empty space after something has finished but before the next thing has started. Musically it is a long way from where the band began — electronic, half-sung, half-rapped — and it split their audience straight down the middle.',
     aboutZh:
@@ -297,6 +305,8 @@ const SONGS = [
     album: 'One More Light',
     year: 2017,
     era: 'The quiet album',
+    youtube: 'Tm8LGxTLtQk',
+    youtubeKind: 'video',
     about:
       'A song written for a friend of the band who had died, arguing that one person\'s loss still matters even though the world is enormous and keeps moving. Chester Bennington died two months after the album came out, and the song became the way a great many people mourned him.',
     aboutZh:
@@ -368,6 +378,8 @@ const SONGS = [
     album: 'From Zero',
     year: 2024,
     era: 'The return',
+    youtube: 'ZAt8oxY0GQo',
+    youtubeKind: 'audio',
     about:
       'The cost of being at the top — the weight that arrives with the position. This is the band\'s first era with Emily Armstrong sharing vocals, seven years after they stopped, and the title is a deliberate old-fashioned inversion that makes the sentence sound like a warning.',
     aboutZh:

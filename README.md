@@ -14,7 +14,15 @@ four periods of the band's career, used as material for adult English lessons:
 
 Each song carries a short piece about what it is actually about, six vocabulary
 items with a Chinese gloss behind a tap, one language focus point drawn from the
-song's own grammar, and three discussion questions.
+song's own grammar, three discussion questions, and a link to the band's own
+YouTube upload.
+
+The YouTube links are plain links, not embedded players — an iframe would pull
+YouTube's tracking into a page that otherwise makes no outbound request at all.
+All six point at the band's official channel and were checked against YouTube's
+own metadata. Five are music videos; *Heavy Is the Crown* is the official audio,
+because its music video was released on Riot's League of Legends channel rather
+than the band's.
 
 ## No lyrics are stored here
 

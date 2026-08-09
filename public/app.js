@@ -8,6 +8,7 @@ const el = {
   tabs: $('tabs'),
   title: $('song-title'),
   meta: $('song-meta'),
+  yt: $('song-yt'),
   about: $('song-about'),
   aboutZh: $('song-about-zh'),
   aboutZhBtn: $('about-zh-btn'),
@@ -126,6 +127,22 @@ function renderSong(song) {
     `<span class="dot">·</span>${escapeHtml(song.era)}`;
   el.about.textContent = song.about;
   el.aboutZh.textContent = song.aboutZh;
+
+  // A song with no verified official upload simply shows no link. The label
+  // says which it is: Heavy Is the Crown's music video sits on Riot's channel,
+  // so the band's own upload is audio only.
+  if (song.youtube) {
+    const audio = song.youtubeKind === 'audio';
+    const label = audio ? 'Official audio on YouTube' : 'Official video on YouTube';
+    el.yt.href = `https://www.youtube.com/watch?v=${song.youtube}`;
+    el.yt.querySelector('.yt-label').textContent = label;
+    el.yt.setAttribute(
+      'aria-label', `${song.title} — ${label}, opens in a new tab`);
+    el.yt.hidden = false;
+  } else {
+    el.yt.hidden = true;
+    el.yt.removeAttribute('href');
+  }
 
   // Vocabulary
   el.vocab.innerHTML = '';

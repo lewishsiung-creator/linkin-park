@@ -163,12 +163,39 @@ body.big { font-size: 19px; }
 }
 
 .meta {
-  margin: 8px 0 16px;
+  margin: 8px 0 14px;
   color: var(--ink-faint);
   font-size: 14px;
 }
 
 .meta .dot { margin: 0 8px; opacity: 0.5; }
+
+.yt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.yt:hover,
+.yt:focus-visible {
+  background: rgba(255, 77, 77, 0.12);
+  border-color: #ff4d4d;
+  color: var(--ink);
+}
+
+.yt[hidden] { display: none; }
+
+.yt .play { color: #ff4d4d; font-size: 12px; }
+
+.yt .ext { color: var(--ink-faint); font-size: 12px; }
 
 .about { margin: 0 0 14px; }
 

@@ -29,6 +29,13 @@
     <div class="song-head">
       <h2 id="song-title"></h2>
       <p class="meta" id="song-meta"></p>
+      <!-- A plain link, not an embed: an iframe would pull YouTube's tracking
+           into a page that otherwise makes no outbound request at all. -->
+      <a class="yt" id="song-yt" target="_blank" rel="noopener noreferrer" hidden>
+        <span class="play" aria-hidden="true">▶</span>
+        <span class="yt-label">Official video on YouTube</span>
+        <span class="ext" aria-hidden="true">↗</span>
+      </a>
     </div>
     <p class="about" id="song-about"></p>
     <button class="zh-chip" id="about-zh-btn" type="button" aria-expanded="false"
