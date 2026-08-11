@@ -9,6 +9,9 @@ const el = {
   title: $('song-title'),
   meta: $('song-meta'),
   yt: $('song-yt'),
+  ytPlay: $('yt-play'),
+  songLinks: $('song-links'),
+  player: $('player'),
   about: $('song-about'),
   aboutZh: $('song-about-zh'),
   aboutZhBtn: $('about-zh-btn'),
@@ -128,6 +131,9 @@ function renderSong(song) {
   el.about.textContent = song.about;
   el.aboutZh.textContent = song.aboutZh;
 
+  // Switching songs must not leave the previous one playing underneath.
+  closePlayer();
+
   // A song with no verified official upload simply shows no link. The label
   // says which it is: Heavy Is the Crown's music video sits on Riot's channel,
   // so the band's own upload is audio only.
@@ -138,9 +144,14 @@ function renderSong(song) {
     el.yt.querySelector('.yt-label').textContent = label;
     el.yt.setAttribute(
       'aria-label', `${song.title} — ${label}, opens in a new tab`);
-    el.yt.hidden = false;
+    el.ytPlay.querySelector('.yt-play-label').textContent =
+      audio ? 'Listen here' : 'Play here';
+    el.ytPlay.setAttribute(
+      'aria-label',
+      `${audio ? 'Listen to' : 'Play'} ${song.title} in this page`);
+    el.songLinks.hidden = false;
   } else {
-    el.yt.hidden = true;
+    el.songLinks.hidden = true;
     el.yt.removeAttribute('href');
   }
 
@@ -185,6 +196,44 @@ function highlightWord(sentence, word) {
   const { re } = buildMatcher([{ word }]);
   return escapeHtml(sentence).replace(re, (m) => `<b>${m}</b>`);
 }
+
+/* ---------- the player ---------- */
+
+// Nothing is fetched from YouTube until this runs, and youtube-nocookie.com
+// is the domain that holds off on the tracking cookie until playback starts.
+function openPlayer(song) {
+  const frame = document.createElement('iframe');
+  frame.src =
+    `https://www.youtube-nocookie.com/embed/${song.youtube}?rel=0&autoplay=1`;
+  frame.title = `${song.title} — Linkin Park`;
+  frame.allow =
+    'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.allowFullscreen = true;
+  el.player.replaceChildren(frame);
+  el.player.hidden = false;
+  el.ytPlay.setAttribute('aria-expanded', 'true');
+  el.ytPlay.querySelector('.yt-play-label').textContent = 'Close player';
+}
+
+// Removing the iframe is what actually stops the audio and ends the
+// connection — hiding it would leave it playing.
+function closePlayer() {
+  el.player.replaceChildren();
+  el.player.hidden = true;
+  el.ytPlay.setAttribute('aria-expanded', 'false');
+}
+
+el.ytPlay.addEventListener('click', () => {
+  if (el.ytPlay.getAttribute('aria-expanded') === 'true') {
+    closePlayer();
+    const audio = current.youtubeKind === 'audio';
+    el.ytPlay.querySelector('.yt-play-label').textContent =
+      audio ? 'Listen here' : 'Play here';
+  } else {
+    openPlayer(current);
+  }
+});
 
 function toggleZh(btn, node) {
   const open = node.hidden;

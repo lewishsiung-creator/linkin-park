@@ -170,17 +170,28 @@ body.big { font-size: 19px; }
 
 .meta .dot { margin: 0 8px; opacity: 0.5; }
 
+.song-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.song-links[hidden] { display: none; }
+
 .yt {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 18px;
   padding: 8px 14px;
   border: 1px solid var(--line);
   border-radius: 9px;
   color: var(--ink-dim);
   text-decoration: none;
+  font: inherit;
   font-size: 14px;
+  cursor: pointer;
+  background: transparent;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
@@ -196,6 +207,36 @@ body.big { font-size: 19px; }
 .yt .play { color: #ff4d4d; font-size: 12px; }
 
 .yt .ext { color: var(--ink-faint); font-size: 12px; }
+
+/* The play button is the primary action in a lesson, so it reads as one. */
+.yt-play {
+  border-color: #4a3038;
+  background: rgba(255, 77, 77, 0.09);
+  color: var(--ink);
+}
+
+.yt-play[aria-expanded="true"] .play { transform: rotate(90deg); }
+
+.yt-play .play { transition: transform 0.15s; }
+
+.player {
+  margin: 0 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+
+.player[hidden] { display: none; }
+
+.player iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 
 .about { margin: 0 0 14px; }
 

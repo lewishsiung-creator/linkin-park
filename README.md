@@ -17,12 +17,18 @@ items with a Chinese gloss behind a tap, one language focus point drawn from the
 song's own grammar, three discussion questions, and a link to the band's own
 YouTube upload.
 
-The YouTube links are plain links, not embedded players — an iframe would pull
-YouTube's tracking into a page that otherwise makes no outbound request at all.
 All six point at the band's official channel and were checked against YouTube's
 own metadata. Five are music videos; *Heavy Is the Crown* is the official audio,
 because its music video was released on Riot's League of Legends channel rather
 than the band's.
+
+**The player is click-to-load.** Opening the page fetches nothing from YouTube —
+no iframe, no script, no thumbnail. The embed is built only when *Play here* is
+pressed, and it uses `youtube-nocookie.com`. So a lesson that never plays a
+video tells YouTube nothing, and the page keeps making zero outbound requests
+until the teacher decides otherwise. Closing the player removes the iframe
+outright rather than hiding it, which is what actually stops the audio; changing
+song does the same.
 
 ## No lyrics are stored here
 
